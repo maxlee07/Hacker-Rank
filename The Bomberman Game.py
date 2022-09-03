@@ -15,12 +15,7 @@ import sys
 #  2. STRING_ARRAY grid
 #
 def fullgrid(r,c):
-    lst=[]
-    for i in range(r):
-        t=[]
-        for j in range(c):
-            t.append("O")
-        lst.append(t)
+    lst=[["O" for i in range(c)] for j in range(r)]
     return lst
 
 def explosion(grid,r,c):
@@ -42,19 +37,20 @@ def explosion(grid,r,c):
 def bomberMan(n, grid):
     # Write your code here
     #print(grid[1][3])
+    r=len(grid)
+    c=len(grid[0])
+    print(grid)
     if n==1:
         return grid
     elif n%2==0:
-        lst=fullgrid(len(grid),len(grid[0]))
+        lst=fullgrid(r,c)
         return ["".join(x) for x in lst]
-
     else:
-        i=2
+        i=3
         while i<=n:
-            if i%2!=0:
-                print(i)
-                grid=explosion(grid,len(grid),len(grid[0]))
-            i+=1
+            #print(i)
+            grid=explosion(grid,r,c)
+            i+=2
     
     return ["".join(x) for x in grid]
 
